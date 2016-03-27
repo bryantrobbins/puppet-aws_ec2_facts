@@ -27,7 +27,7 @@ Facter.add(:aws_cloudformation_stack_name) do
     region = Facter.value(:aws_region)
     command = "aws --region us-east-1 ec2 describe-tags --filters \"Name=resource-id,Values=#{instanceid}\"  \"Name=key,Values=aws:cloudformation:stack-name\" --output text | cut -f5"
     stack_name = Facter::Core::Execution.exec(command)
-    stack_name.downcase
+    stack_name
   end
 end
 
